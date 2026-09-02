@@ -80,7 +80,7 @@ const features = [
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-24 sm:pt-28 lg:pt-24 pb-16 lg:pb-20 bg-white dark:bg-[#07111D] transition-all duration-500 overflow-hidden">
+    <section id="home" className="relative scroll-mt-20 min-h-screen flex items-center pt-24 sm:pt-28 lg:pt-24 pb-16 lg:pb-20 bg-white dark:bg-[#07111D] transition-all duration-500 overflow-hidden">
       {/* Fades into Services' background color instead of a hard cut */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 sm:h-44 lg:h-56 bg-gradient-to-b from-transparent via-gray-50/70 dark:via-[#0A1826]/70 to-gray-50 dark:to-[#0A1826]" />
 
@@ -88,7 +88,8 @@ export default function Hero() {
         <div className="grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 items-center">
           {/* LEFT */}
           <div className="text-center lg:text-left">
-            
+           
+
             {/* Heading */}
             <Reveal delay={100}>
               <h1
@@ -98,7 +99,7 @@ export default function Hero() {
                 Powering a{" "}
                 <span className="relative inline-block text-green-600">
                   sustainable
-                  
+                 
                     
                 </span>{" "}
                 future.
@@ -127,13 +128,12 @@ export default function Hero() {
                   Get Started
                   <ArrowRight size={17} />
                 </Link>
-                               <Link
+                <Link
                   to="/about"
                   className="text-gray-700 dark:text-gray-200 font-semibold rounded-full px-7 py-3.5 border border-gray-200 dark:border-gray-700 hover:border-green-600 hover:text-green-600 transition-all duration-300"
                 >
                   Learn More
                 </Link>
-
               </div>
             </Reveal>
 
