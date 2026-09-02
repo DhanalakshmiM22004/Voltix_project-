@@ -55,7 +55,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 lg:py-32 bg-gray-50 dark:bg-[#0A1826] transition-all duration-500 overflow-hidden">
+    <section id="about" className="scroll-mt-20 py-24 lg:py-32 bg-gray-50 dark:bg-[#0A1826] transition-all duration-500 overflow-hidden">
       <div className="max-w-[1450px] mx-auto px-6 lg:px-12 xl:px-16">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           {/* LEFT — Image */}
