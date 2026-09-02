@@ -11,29 +11,10 @@ import {
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// Inline social icons 
-const FacebookIcon = (props) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-    <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z" />
-  </svg>
-);
-const TwitterIcon = (props) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-    <path d="M18.9 3H22l-7.2 8.2L23.3 21h-6.6l-5.2-6.4L5.6 21H2.4l7.7-8.8L1 3h6.8l4.7 5.9L18.9 3Zm-1.2 16.1h1.7L7.4 4.8H5.6l12.1 14.3Z" />
-  </svg>
-);
-const InstagramIcon = (props) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-    <path d="M12 2c2.7 0 3.1 0 4.1.1 1.1 0 1.8.2 2.3.4a4.6 4.6 0 0 1 2.6 2.6c.2.5.4 1.2.4 2.3.1 1 .1 1.4.1 4.1s0 3.1-.1 4.1c0 1.1-.2 1.8-.4 2.3a4.6 4.6 0 0 1-2.6 2.6c-.5.2-1.2.4-2.3.4-1 .1-1.4.1-4.1.1s-3.1 0-4.1-.1c-1.1 0-1.8-.2-2.3-.4a4.6 4.6 0 0 1-2.6-2.6c-.2-.5-.4-1.2-.4-2.3C2 15.1 2 14.7 2 12s0-3.1.1-4.1c0-1.1.2-1.8.4-2.3a4.6 4.6 0 0 1 2.6-2.6c.5-.2 1.2-.4 2.3-.4C8.9 2 9.3 2 12 2Zm0 1.8c-2.6 0-3 0-4 .1-.9 0-1.4.2-1.7.3a2.8 2.8 0 0 0-1.6 1.6c-.1.3-.3.8-.3 1.7-.1 1-.1 1.4-.1 4s0 3 .1 4c0 .9.2 1.4.3 1.7a2.8 2.8 0 0 0 1.6 1.6c.3.1.8.3 1.7.3 1 .1 1.4.1 4 .1s3 0 4-.1c.9 0 1.4-.2 1.7-.3a2.8 2.8 0 0 0 1.6-1.6c.1-.3.3-.8.3-1.7.1-1 .1-1.4.1-4s0-3-.1-4c0-.9-.2-1.4-.3-1.7a2.8 2.8 0 0 0-1.6-1.6c-.3-.1-.8-.3-1.7-.3-1-.1-1.4-.1-4-.1Zm0 3.5a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4Zm0 1.8a2.9 2.9 0 1 0 0 5.8 2.9 2.9 0 0 0 0-5.8Zm4.9-2a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z" />
-  </svg>
-);
-const LinkedinIcon = (props) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-    <path d="M6.9 8.4H3.6V20h3.3V8.4ZM5.3 3.4a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 0 0 0-3.8ZM20.4 20h-3.3v-6.1c0-1.5 0-3.3-2-3.3s-2.4 1.6-2.4 3.2V20H9.4V8.4h3.2v1.6h.1c.4-.8 1.6-1.7 3.2-1.7 3.4 0 4.5 2.3 4.5 5.2V20Z" />
-  </svg>
-);
 
-// Reusable scroll-reveal hook 
+
+// Reusable scroll-reveal hook — re-triggers every time the element
+// enters or leaves the viewport, so it animates on every scroll pass.
 function useInView(threshold = 0.2) {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
@@ -54,7 +35,7 @@ function useInView(threshold = 0.2) {
   return [ref, inView];
 }
 
-// applies the fade-up transition
+// Small wrapper that applies the fade-up transition
 function Reveal({ children, delay = 0, className = "" }) {
   const [ref, inView] = useInView();
 
@@ -77,8 +58,10 @@ const contactInfo = [
   { icon: MapPin, label: "Address", value: "Chennai, Tamil Nadu" },
 ];
 
-const socials = [FacebookIcon, TwitterIcon, InstagramIcon, LinkedinIcon];
 
+// Floating toast — fixed to the corner, completely outside the form's
+// layout flow, so it can never appear "stacked" at the end of the form
+// and only ever shows one message at a time (new one replaces old cleanly).
 function Toast({ toast, onClose }) {
   const timerRef = useRef(null);
 
@@ -119,6 +102,9 @@ function Toast({ toast, onClose }) {
     </div>
   );
 }
+
+// Unique animated submit button — a sliding-fill progress bar sweeps
+// across the pill while sending, then morphs into a drawn checkmark.
 function SubmitButton({ status }) {
   return (
     <button
@@ -191,9 +177,9 @@ function SubmitButton({ status }) {
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("idle"); 
+  const [status, setStatus] = useState("idle"); // idle | sending | sent
   const [errors, setErrors] = useState({});
-  const [toast, setToast] = useState(null);
+  const [toast, setToast] = useState(null); // { id, type: "success" | "error", message }
 
   const showToast = (type, message) => {
     setToast({ id: Date.now(), type, message });
@@ -233,6 +219,7 @@ export default function Contact() {
     }
 
     setStatus("sending");
+    // Simulated send — replace with your real submit logic
     setTimeout(() => {
       setStatus("sent");
       showToast("success", "Message sent successfully!");
@@ -244,7 +231,7 @@ export default function Contact() {
   };
 
   return (
-    <section   id="contact"   className="relative py-24 lg:py-32 bg-white dark:bg-[#07111D] transition-all duration-500 overflow-hidden">
+    <section id="contact" className="relative scroll-mt-20 py-24 lg:py-32 bg-white dark:bg-[#07111D] transition-all duration-500 overflow-hidden">
       <Toast toast={toast} onClose={() => setToast(null)} />
 
       {/* Decorative glow */}
@@ -298,20 +285,9 @@ export default function Contact() {
               })}
             </div>
 
-            {/* Social icons */}
-            <Reveal delay={500}>
-              <div className="flex items-center gap-4 mt-10">
-                {socials.map((Icon, i) => (
-                  <a
-                    key={i}
-                    href="#"
-                    className="w-11 h-11 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-green-600 hover:border-green-600 hover:text-white hover:-translate-y-1 transition-all duration-300"
-                  >
-                    <Icon className="w-[18px] h-[18px]" />
-                  </a>
-                ))}
+            
               </div>
-            </Reveal>
+         
           </div>
 
           {/* RIGHT — Glass form */}
@@ -386,7 +362,7 @@ export default function Contact() {
             </div>
           </Reveal>
         </div>
-      </div>
+   
     </section>
   );
 }
