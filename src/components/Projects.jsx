@@ -74,7 +74,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 lg:py-32 bg-white dark:bg-[#07111D] transition-all duration-500 overflow-hidden">
+    <section id="projects" className="scroll-mt-20 py-24 lg:py-32 bg-white dark:bg-[#07111D] transition-all duration-500 overflow-hidden">
       <div className="max-w-[1450px] mx-auto px-6 lg:px-12 xl:px-16">
         {/* Header */}
         <Reveal delay={0}>
