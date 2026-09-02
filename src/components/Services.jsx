@@ -70,7 +70,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 lg:py-32 bg-gray-50 dark:bg-[#0A1826] transition-all duration-500 overflow-hidden">
+    <section id="services" className="scroll-mt-20 py-24 lg:py-32 bg-gray-50 dark:bg-[#0A1826] transition-all duration-500 overflow-hidden">
       <div className="max-w-[1450px] mx-auto px-6 lg:px-12 xl:px-16">
         {/* Header */}
         <Reveal delay={0}>
