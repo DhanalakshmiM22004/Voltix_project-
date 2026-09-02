@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import LoadingScreen from "./components/LoadingScreen";
+import ScrollToHash from "./components/ScrollToHash";
 import Home from "./pages/Home";
 import Quote from "./pages/Quote";
 import ServiceDetail from "./pages/ServiceDetail";
@@ -13,6 +14,7 @@ function App() {
     <div className="min-h-screen bg-white dark:bg-[#07111D] transition-all duration-500">
       <LoadingScreen />
 
+      <ScrollToHash />
       <Navbar />
 
       <Routes>
