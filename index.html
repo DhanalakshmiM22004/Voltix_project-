@@ -25,6 +25,22 @@
     };
   </script>
 
+<!-- Smooth dark/light mode transition — applies globally so every element
+     fades its colors together, instead of only the elements that happen
+     to have their own transition-all class. Scoped to color/shadow
+     properties only, so it never interferes with layout, transform, or
+     opacity-based scroll-reveal animations elsewhere on the site. -->
+  <style>
+    html.theme-transition,
+    html.theme-transition *,
+    html.theme-transition *::before,
+    html.theme-transition *::after {
+      transition-property: background-color, border-color, color, fill, stroke, box-shadow !important;
+      transition-timing-function: ease !important;
+      transition-duration: 400ms !important;
+    }
+  </style>
+
   <title>Voltix</title>
 </head>
 
