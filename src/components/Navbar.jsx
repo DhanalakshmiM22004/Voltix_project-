@@ -23,11 +23,23 @@ export default function Navbar() {
 
   useEffect(() => {
     const root = document.documentElement;
+
+    // Enable the smooth-transition rule (from index.html) just for the
+    // moment of switching, then remove it — so it never lingers and
+    // interferes with other animations (scroll-reveals, hovers, etc.)
+    root.classList.add("theme-transition");
+
     if (darkMode) {
       root.classList.add("dark");
     } else {
       root.classList.remove("dark");
     }
+
+    const timer = setTimeout(() => {
+      root.classList.remove("theme-transition");
+    }, 450);
+
+    return () => clearTimeout(timer);
   }, [darkMode]);
 
   // Measure the active link's position and slide the underline to it —
